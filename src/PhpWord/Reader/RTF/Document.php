@@ -264,7 +264,7 @@ class Document
             if (isset($this->flags['property'])) { // Set property
                 $this->flags['value'] = $this->text;
             } else { // Set text
-                if (true === $this->flags['paragraph']) {
+                if (!is_null($this->flags) and key_exists('paragraph', $this->flags) and true === $this->flags['paragraph']) {
                     $this->flags['paragraph'] = false;
                     $this->flags['text'] = $this->text;
                 }
