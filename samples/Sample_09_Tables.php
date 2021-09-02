@@ -151,6 +151,36 @@ $table = $section->addTable(array('borderSize' => 6, 'borderColor' => '999999', 
 $cell = $table->addRow()->addCell();
 $cell->addText('This is a single cell.');
 
+
+// 7. Table with different cell margins
+
+$section->addTextBreak(1);
+$section->addText('Table with different cell margins', $header);
+
+$phpWord->addTableStyle('TableStyle', [
+    'borderSize' => 1,
+    'borderColor' => '000000',
+    'cellMargin' => 80,
+]);
+$table = $section->addTable('TableStyle');
+
+$rowHeight= 200;
+$row = $table->addRow($rowHeight);
+$row->addCell(2000, ['marginTopSize' => 500])->addText('top: 500');
+
+$row = $table->addRow($rowHeight);
+$row->addCell(2000, ['marginLeftSize' => 500])->addText('left: 500');
+
+$row = $table->addRow($rowHeight);
+$row->addCell(2000, ['marginRightSize' => 500])->addText('right: 500', null, ['alignment' => 'right']);
+
+$row = $table->addRow($rowHeight);
+$row->addCell(2000, ['marginBottomSize' => 500, 'valign' => 'bottom'])->addText('bottom: 500');
+
+$row = $table->addRow($rowHeight);
+$row->addCell(2000, ['marginTopSize' => 500, 'marginLeftSize' => 500])->addText('top: 500, left: 500');
+
+
 // Save file
 echo write($phpWord, basename(__FILE__, '.php'), $writers);
 if (!CLI) {
